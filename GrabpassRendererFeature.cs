@@ -42,7 +42,7 @@ public class GrabpassRendererFeature : ScriptableRendererFeature
 		}
 	}
 
-    [SerializeField] Material material;
+    	[SerializeField] Material material;
 	[SerializeField] RenderPassEvent renderPassEvent;
 	GrabpassRenderPass grabpassRenderPass;
 

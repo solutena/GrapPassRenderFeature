@@ -12,19 +12,19 @@ public class GrabpassRendererFeature : ScriptableRendererFeature
 		RTHandle tempTexture;
 		RTHandle sourceTexture;
 
-        public GrabpassRenderPass(Material material, RenderPassEvent renderPassEvent) : base()
+		public GrabpassRenderPass(Material material, RenderPassEvent renderPassEvent) : base()
 		{
 			this.material = material;
 			this.renderPassEvent = renderPassEvent;
 		}
 
-        public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
+		public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
 		{
 			sourceTexture = renderingData.cameraData.renderer.cameraColorTargetHandle;
 			tempTexture = RTHandles.Alloc(new RenderTargetIdentifier(textureName), textureName);
 		}
 
-        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
+		public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
 		{
 			CommandBuffer commandBuffer = CommandBufferPool.Get("FullScreenRenderFeature");
 			RenderTextureDescriptor targetDescriptor = renderingData.cameraData.cameraTargetDescriptor;
@@ -36,7 +36,7 @@ public class GrabpassRendererFeature : ScriptableRendererFeature
 			CommandBufferPool.Release(commandBuffer);
 		}
 
-        public override void OnCameraCleanup(CommandBuffer cmd)
+		public override void OnCameraCleanup(CommandBuffer cmd)
 		{
 			tempTexture.Release();
 		}
@@ -46,13 +46,13 @@ public class GrabpassRendererFeature : ScriptableRendererFeature
 	[SerializeField] RenderPassEvent renderPassEvent;
 	GrabpassRenderPass grabpassRenderPass;
 
-    public override void Create()
+	public override void Create()
 	{
 		grabpassRenderPass = new GrabpassRenderPass(material, renderPassEvent);
 	}
 
-    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+	public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
 	{
-		renderer.EnqueuePass(grabpassRenderPass);
+	renderer.EnqueuePass(grabpassRenderPass);
 	}
 }

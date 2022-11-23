@@ -53,6 +53,6 @@ public class GrabpassRendererFeature : ScriptableRendererFeature
 
 	public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
 	{
-	renderer.EnqueuePass(grabpassRenderPass);
+		renderer.EnqueuePass(grabpassRenderPass);
 	}
 }
